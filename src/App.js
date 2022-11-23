@@ -1,10 +1,10 @@
-
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-     <nav>
+      <nav>
         <h1>My Articles</h1>
       </nav>
     </div>
