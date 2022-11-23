@@ -1,11 +1,27 @@
 import React from "react";
+import useFetch from "../hooks/useFetch";
+import "./Home.css";
 
 const Home = () => {
+  const {
+    data: articles,
+    isPending,
+    error,
+  } = useFetch("http://localhost3000/articles");
   return (
-    <div>
-      <h2> Home Page</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus dolore vero voluptatibus incidunt, eum fuga non! Ipsa similique sint id vel? Ut laudantium aspernatur officia quos in molestiae quas dolorem?
-      Doloremque nobis quia culpa maiores aperiam veritatis placeat quos, soluta molestiae vel. Beatae blanditiis voluptas placeat repellat expedita? Amet, repellendus aspernatur nisi quis laboriosam sint maiores assumenda nesciunt dolor doloremque?</p>
+    <div className="home">
+      <h2> Articles</h2>
+      {isPending && <div> Loading...</div>}
+      {error && <div>{error}</div>}
+      {articles &&
+        articles.map((article) => {
+          return (
+            <div key={article.id} className="card">
+              <h3>{article.title}</h3>
+              <p>{article.author}</p>
+            </div>
+          );
+        })}
     </div>
   );
 };
